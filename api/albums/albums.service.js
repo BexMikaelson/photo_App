@@ -7,7 +7,7 @@ module.exports = {
       [data.title, data.description, data.user_id],
       (error, results) => {
         if (error) {
-          callback(error);
+          return callback(error);
         }
         const createdAlbum = {
           title: data.title,
@@ -21,18 +21,33 @@ module.exports = {
   getAlbums: (callback) => {
     pool.query(`SELECT * FROM albums`, [], (error, results) => {
       if (error) {
-        callback(error);
+        return callback(error);
       }
       callback(null, results);
     });
   },
   getAlbumByAlbumId: (id, callback) => {
-    pool.query(`SELECT * FROM albums WHERE id = ?`, [id], (error, results) => {
-      if (error) {
-        callback(error);
+    pool.query(
+      `SELECT * FROM albums WHERE id = ?`,
+      [id],
+      (error, albumResults) => {
+        if (error) {
+          return callback(error);
+        }
+        const album = albumResults[0];
+        pool.query(
+          `SELECT * FROM photos WHERE album_id = ?`,
+          [id],
+          (error, photoResults) => {
+            if (error) {
+              return callback(error);
+            }
+            album.photos = photoResults;
+            callback(null, album);
+          }
+        );
       }
-      callback(null, results[0]);
-    });
+    );
   },
   updateAlbum: (id, data, callback) => {
     pool.query(
@@ -40,20 +55,22 @@ module.exports = {
       [data.title, data.description, id],
       (error, results) => {
         if (error) {
-          callback(error);
+          return callback(error);
         }
         callback(null, results);
       }
     );
   },
-  addPhotoToAlbum: (albumId, photoData, callback) => {
+  addPhotoToAlbum: (albumId, photoId, callback) => {
     // Inget utländskt nyckelförhållande definierat, men vi använder fortfarande album_id som en referens
     pool.query(
-      `INSERT INTO photos(album_id, photo_data) VALUES(?,?)`,
-      [albumId, photoData],
+      //   `INSERT INTO photos(album_id, photo_data) VALUES(?,?)`,
+      `UPDATE photos SET album_id = ? WHERE id = ?`,
+      [albumId, photoId],
       (error, results) => {
         if (error) {
-          callback(error);
+          console.log(error);
+          return callback(error);
         }
         callback(null, results);
       }

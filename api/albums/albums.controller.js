@@ -94,14 +94,13 @@ module.exports = {
 
     addPhotoToAlbum(albumId, photoData, (error, results) => {
       if (error) {
-        console.log(error);
         return res.status(500).json({
-          success: 0,
+          status: "error",
           message: "Database connection error",
         });
       }
       return res.status(200).json({
-        success: 1,
+        status: "success",
         data: results,
       });
     });
