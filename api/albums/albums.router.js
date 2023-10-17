@@ -1,18 +1,20 @@
-const { 
-    getAlbums, 
-    getAlbumByAlbumId, 
-    createAlbum,
-    updateAlbum,
-    addPhotoToAlbum
-} = require('/Applications/MAMP/htdocs/photo_App/api/albums/albums.controller.js');
+const {
+  getAlbums,
+  getAlbumByAlbumId,
+  createAlbum,
+  updateAlbum,
+  addPhotoToAlbum,
+} = require("./albums.controller");
 
-const router = require('express').Router();
-const { checkToken } = require('../../auth/token_validation');
+const router = require("express").Router();
+const { checkToken } = require("../../auth/token_validation");
 
-router.get('/',checkToken, getAlbums);
-router.get('/:albumId',checkToken, getAlbumByAlbumId);
-router.post('/',checkToken, createAlbum);
-router.put('/:albumId',checkToken, updateAlbum);
-router.post('/:albumId/photos',checkToken, addPhotoToAlbum);
+router.get("/", checkToken, getAlbums);
+
+//Todo: add photos for albums
+router.get("/:albumId", checkToken, getAlbumByAlbumId);
+router.post("/", checkToken, createAlbum);
+router.put("/:albumId", checkToken, updateAlbum);
+router.post("/:albumId/photos", checkToken, addPhotoToAlbum);
 
 module.exports = router;

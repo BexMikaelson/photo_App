@@ -48,7 +48,7 @@ module.exports = {
             user_id: results.id, // Adding user_id to token payload
             email: results.email /* result: results */,
           },
-          JWT_KEY,
+          process.env.JWT_KEY,
           {
             expiresIn: "2h",
           }
@@ -66,7 +66,6 @@ module.exports = {
 
         return res.json({
           status: "success",
-          message: "login successfully",
           data: {
             access_token: accessToken,
             refresh_token: refreshToken,
