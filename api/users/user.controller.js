@@ -43,8 +43,9 @@ module.exports = {
           const result = compareSync(body.password, results.password);
           if (result) {
             results.password = undefined;
-            const jsontoken = sign({ result: results }, "qwe1234", {
-              expiresIn: "1h"
+            const jsontoken = sign({ user_id: results.id,  // Adding user_id to token payload
+            email: results.email /* result: results */ }, "qwe1234", {
+              expiresIn: "2h"
             });
             return res.json({
               success: 1,
