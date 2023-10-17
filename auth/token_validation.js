@@ -12,9 +12,11 @@ module.exports = {
             message: "Invalid Token..."
           });
         } else {
-          req.decoded = decoded;
+          console.log(decoded);
+          req.decoded = decoded;  
+          req.user = decoded;
           next();
-        }
+      }
       });
     } else {
       return res.json({
