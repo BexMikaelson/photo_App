@@ -6,13 +6,25 @@ const {
     addPhotoToAlbum 
 } = require('./albums.service');
 
-/* const { genSaltSync, hashSync, compareSync} = require('bcrypt'); */
+
 module.exports = {
     createAlbum: (req, res) => {
+        console.log(req.user); 
         const body = req.body;
-        /* const salt = genSaltSync(10);
-        body.password = hashSync(body.password, salt); */
-        createAlbum(body, (err, results) => {
+        body.user_id = req.user.user_id;
+
+        const user_id = req.user.user_id;
+     
+        
+
+        if (/* !title || !description || */ !user_id) {
+            return res.status(400).json({
+                success: 0,
+                message: "Required fields are missing"
+            });
+        }
+
+        createAlbum(/* title, description */body, (err, results) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -24,6 +36,7 @@ module.exports = {
                 success: 1,
                 data: results
             });
+            
         });
     },
 
@@ -82,7 +95,21 @@ module.exports = {
     },
 
     addPhotoToAlbum: (req, res) => {
-        // You need to define the structure of adding a photo.
-        // This function is just a placeholder and might require more details.
+        const albumId = req.params.albumId; 
+        const photoData = req.body.photo_data;  
+    
+        addPhotoToAlbum(albumId, photoData, (error, results) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Database connection error"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: results
+            });
+        });
     }
 }
