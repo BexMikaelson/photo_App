@@ -12,6 +12,7 @@ const { checkToken } = require("../../auth/token_validation");
 router.get("/", checkToken, getAlbums);
 
 //Todo: add photos for albums
+router.get("/", checkToken, getAlbums);
 router.get("/:albumId", checkToken, getAlbumByAlbumId);
 router.post("/", checkToken, createAlbum);
 router.put("/:albumId", checkToken, updateAlbum);
