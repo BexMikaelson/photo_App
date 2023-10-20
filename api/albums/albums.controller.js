@@ -2,7 +2,7 @@ const {
   createAlbum,
   getAlbumByAlbumId,
   getAlbums,
-  updateAlbum,
+  updateAlbums,
   addPhotoToAlbum,
 } = require("./albums.service");
 
@@ -10,7 +10,6 @@ module.exports = {
   createAlbum: (req, res) => {
     const body = req.body;
     body.user_id = req.user.user_id;
-
     const user_id = req.user.user_id;
     if (!user_id) {
       return res.status(400).json({
@@ -18,7 +17,6 @@ module.exports = {
         message: "Required fields are missing",
       });
     }
-
     createAlbum(body, (err, results) => {
       if (err) {
         console.log(err);
@@ -35,7 +33,8 @@ module.exports = {
   },
 
   getAlbums: (req, res) => {
-    getAlbums((err, results) => {
+    const user_id = req.user.user_id;   
+    getAlbums(user_id,(err, results) => {
       if (err) {
         console.log(err);
         return;
@@ -49,6 +48,7 @@ module.exports = {
 
   getAlbumByAlbumId: (req, res) => {
     const id = req.params.albumId;
+   
     getAlbumByAlbumId(id, (err, results) => {
       if (err) {
         console.log(err);
@@ -70,7 +70,10 @@ module.exports = {
   updateAlbum: (req, res) => {
     const id = req.params.albumId;
     const body = req.body;
-    updateAlbum(id, body, (err, results) => {
+    body.user_id = req.user.user_id;
+    const user_id = req.user.user_id;
+   
+    updateAlbums(id, body, (err, results) => {
       if (err) {
         console.log(err);
         return;
@@ -83,16 +86,17 @@ module.exports = {
       }
       return res.json({
         status: "success",
-        message: "Album updated successfully",
+        data: results,
       });
     });
   },
 
   addPhotoToAlbum: (req, res) => {
     const albumId = req.params.albumId;
-    const photoData = req.body.photo_data;
-
+    const photoData = req.body.photo_id;
+    
     addPhotoToAlbum(albumId, photoData, (error, results) => {
+      console.log(photoData, albumId)
       if (error) {
         return res.status(500).json({
           status: "error",
