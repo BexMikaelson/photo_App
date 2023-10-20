@@ -59,10 +59,10 @@ module.exports = {
     });
   },
   updatePhoto: (req, res) => {
+    const id = req.params.photoId;
     const body = req.body;
-    const photoId = req.params.photoId;
     body.user_id = req.user.user_id;
-    updatePhoto(body, photoId, (err, results) => {
+    updatePhoto(body, id, (err, results) => {
       if (err) {
         return res.status(500).json({
           status: "error",

@@ -51,25 +51,31 @@ module.exports = {
     );
   },
 
-  updatePhoto: (data, photoId, callback) => {
+  updatePhoto: (data, id, callback) => {
     pool.query(
       `UPDATE photos SET title = ?, description = ? WHERE id = ?`,
-      [data.title, data.description, photoId],
-      (error, results) => {
+      [data.title, data.description, id],
+      (error) => {
         if (error) {
           console.log(error);
           return callback(error);
         }
-
-        const updatedPhoto = {
-          title: data.title,
-          image_url: data.image_url,
-          description: data.description,
-          user_id: data.user_id,
-          id: photoId,
-        };
-        callback(null, updatedPhoto);
+        pool.query(`SELECT image_url FROM photos WHERE id = ?`, [id], (imgError, imgResults) => {
+            if (imgError) {
+                console.log(imgError);
+                return callback(imgError);
+            }
+            const photoInfo = {
+                title: data.title,
+                description: data.description,
+                image_url: imgResults[0].image_url,
+                user_id: data.user_id,
+                id: id,
+            };
+            callback(null, photoInfo);
+        });
       }
     );
-  },
-};
+},
+
+}
