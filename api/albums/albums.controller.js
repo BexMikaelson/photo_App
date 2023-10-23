@@ -48,8 +48,8 @@ module.exports = {
 
   getAlbumByAlbumId: (req, res) => {
     const id = req.params.albumId;
-   
-    getAlbumByAlbumId(id, (err, results) => {
+    const user_id = req.user.user_id;
+    getAlbumByAlbumId(id, user_id, (err, results) => {
       if (err) {
         console.log(err);
         return;
@@ -76,12 +76,15 @@ module.exports = {
     updateAlbums(id, body, (err, results) => {
       if (err) {
         console.log(err);
-        return;
-      }
-      if (!results) {
         return res.json({
           status: "error",
-          message: "Failed to update album",
+          message: err.message,
+      });
+      }
+      if (!results || results.affectedRows === 0) {
+        return res.json({
+          status: "error",
+          message: "No such album found or user does not have permission to update it.",
         });
       }
       return res.json({
@@ -92,12 +95,28 @@ module.exports = {
   },
 
   addPhotoToAlbum: (req, res) => {
+    const userId = req.user.user_id;
     const albumId = req.params.albumId;
     const photoData = req.body.photo_id;
+
+    // Input validations
+    if (!userId || !albumId || !photoData) {
+      return res.status(400).json({
+          status: "error",
+          message: "Incomplete data provided.",
+      });
+    }
     
-    addPhotoToAlbum(albumId, photoData, (error, results) => {
-      console.log(photoData, albumId)
+    addPhotoToAlbum(userId, albumId, photoData, (error, results) => {
+      console.log(photoData, albumId, userId)
       if (error) {
+        // Handle specific known errors
+        if (error.message === "Album not found or not owned by the user") {
+          return res.status(403).json({
+              status: "error",
+              message: "Unauthorized action or album not found.",
+          });
+        }
         return res.status(500).json({
           status: "error",
           message: "Database connection error",
