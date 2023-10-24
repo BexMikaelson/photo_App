@@ -2,8 +2,6 @@ const {
   create,
   getUserByUserId,
   getUsers,
-  updateUser,
-  deleteUser,
   getUserByUserEmail,
 } = require("./user.service");
 
@@ -45,8 +43,8 @@ module.exports = {
         results.password = undefined;
         const accessToken = sign(
           {
-            user_id: results.id, // Adding user_id to token payload
-            email: results.email /* result: results */,
+            user_id: results.id,
+            email: results.email,
           },
           process.env.JWT_KEY,
           {

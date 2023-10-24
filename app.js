@@ -11,15 +11,6 @@ app.use('/api/users', userRouter);
 app.use('/api/albums', albumsRouter);
 app.use('/api/photos', photosRouter);
 
-
-
- /* app.get('/api', (req, res) => {
-     res.json({
-         success: 1,
-         message: "Rest api is working properly"
-     });
- }); */
-
 app.listen(PORT, () => {
-    console.log('Server up and running, listening on port', process.env.APP_PORT );
+    console.log('Server up and running, listening on port', PORT );
 })
