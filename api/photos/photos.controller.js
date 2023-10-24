@@ -24,22 +24,27 @@ module.exports = {
     });
   },
   getPhotos: (req, res) => {
-    getPhotos((err, results) => {
+    const user_id = req.user.user_id;
+    getPhotos(user_id, (err, photosResults) => {
       if (err) {
         return res.status(500).json({
           status: "error",
           message: "Database connection error",
-        });
+        });  
+      }
+      if (!photosResults.length) {
+        return callback(new Error("Photos not found or not owned by the user"));
       }
       return res.status(200).json({
         status: "success",
-        data: results,
+        data: photosResults,
       });
     });
   },
   getPhotoByPhotoId: (req, res) => {
     const id = req.params.photoId;
-    getPhotoByPhotoId(id, (err, results) => {
+    const user_id = req.user.user_id;
+    getPhotoByPhotoId(id, user_id, (err, results) => {
       if (err) {
         return res.status(500).json({
           status: "error",
@@ -60,9 +65,10 @@ module.exports = {
   },
   updatePhoto: (req, res) => {
     const id = req.params.photoId;
+    const user_id = req.user.user_id;
     const body = req.body;
     body.user_id = req.user.user_id;
-    updatePhoto(body, id, (err, results) => {
+    updatePhoto(id, body, user_id, (err, results) => {
       if (err) {
         return res.status(500).json({
           status: "error",
