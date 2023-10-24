@@ -82,15 +82,18 @@ module.exports = {
     getUserByUserId(id, (err, results) => {
       if (err) {
         console.log(err);
-        return;
+        return res.status(500).json({
+          success: "error",
+          message: "Database connection error: " + err.message,
+        });
       }
       if (!results) {
-        return res.json({
+        return res.status(404).json({
           success: 0,
           message: "User not found",
         });
       }
-      return res.json({
+      return res.status(200).json({
         success: 1,
         data: results,
       });
@@ -100,9 +103,12 @@ module.exports = {
     getUsers((err, results) => {
       if (err) {
         console.log(err);
-        return;
+        return res.status(500).json({
+          success: "error",
+          message: "Database connection error: " + err.message,
+        });
       }
-      return res.json({
+      return res.status(200).json({
         success: 1,
         data: results,
       });

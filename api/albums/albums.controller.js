@@ -37,9 +37,12 @@ module.exports = {
     getAlbums(user_id,(err, results) => {
       if (err) {
         console.log(err);
-        return;
+        return res.status(500).json({
+          status: "error",
+          message: "Database connection error: " + err.message,
+        });
       }
-      return res.json({
+      return res.status(200).json({
         status: "success",
         data: results,
       });
@@ -52,7 +55,10 @@ module.exports = {
     getAlbumByAlbumId(id, user_id, (err, results) => {
       if (err) {
         console.log(err);
-        return;
+        return res.status(500).json({
+          status: "error",
+          message: "Database connection error: " + err.message,
+        });
       }
       if (!results) {
         return res.status(404).json({
@@ -60,7 +66,7 @@ module.exports = {
           message: "Album not found",
         });
       }
-      return res.json({
+      return res.status(200).json({
         status: "success",
         data: results,
       });
@@ -75,19 +81,19 @@ module.exports = {
    
     updateAlbums(id, body, (err, results) => {
       if (err) {
-        console.log(err);
-        return res.json({
-          status: "error",
-          message: err.message,
-      });
+        if (!results || results.affectedRows === 0) {
+          return res.status(404).json({
+            status: "error",
+            message: "No such album found or user does not have permission to update it.",
+          });
+        }else {
+          return res.status(500).json({
+            status: "error",
+            message: "Database connection error: " + err.message,
+          });
+        }
       }
-      if (!results || results.affectedRows === 0) {
-        return res.json({
-          status: "error",
-          message: "No such album found or user does not have permission to update it.",
-        });
-      }
-      return res.json({
+      return res.status(200).json({
         status: "success",
         data: results,
       });
@@ -99,7 +105,7 @@ module.exports = {
     const albumId = req.params.albumId;
     const photoId = req.body.photo_id;
 
-    addPhotoToAlbum(albumId, photoId, userId, (error, results) => {
+    addPhotoToAlbum(albumId, photoId, userId, (error) => {
       if (error) {
         if (error.message === "Album not found or not owned by the user") {
           return res.status(403).json({
@@ -114,7 +120,7 @@ module.exports = {
       }
       return res.status(200).json({
         status: "success",
-        data: results,
+        data: null,
       });
     });
   },

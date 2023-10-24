@@ -46,16 +46,17 @@ module.exports = {
     const user_id = req.user.user_id;
     getPhotoByPhotoId(id, user_id, (err, results) => {
       if (err) {
-        return res.status(500).json({
-          status: "error",
-          message: "Database connection error",
-        });
-      }
-      if (!results) {
-        return res.status(404).json({
-          status: "error",
-          message: "Record not found",
-        });
+        if (err.message === "No photo found with the given id for this user") {
+          return res.status(404).json({
+            status: "error",
+            message: "Record not found, No photo found with the given id for this user",
+          });
+        } else {
+          return res.status(500).json({
+            status: "error",
+            message: "Database connection error",
+          });
+        }
       }
       return res.status(200).json({
         status: "success",
@@ -70,10 +71,17 @@ module.exports = {
     body.user_id = req.user.user_id;
     updatePhoto(id, body, user_id, (err, results) => {
       if (err) {
-        return res.status(500).json({
-          status: "error",
-          message: "Database connection error",
-        });
+        if (err.message === "No photo found to update or unauthorized.") {
+          return res.status(404).json({
+            status: "error",
+            message: "Record not found, No photo found to update or unauthorized.",
+          });
+        } else {
+          return res.status(500).json({
+            status: "error",
+            message: "Database connection error",
+          });
+        }
       }
       return res.status(200).json({
         status: "success",
