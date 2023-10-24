@@ -19,12 +19,16 @@ module.exports = {
     );
   },
   getAlbums: (user_id, callback) => {
-    pool.query(`SELECT * FROM albums WHERE user_id = ?`, [user_id], (error, results) => {
-      if (error) {
-        return callback(error);
+    pool.query(
+      `SELECT * FROM albums WHERE user_id = ?`,
+      [user_id],
+      (error, results) => {
+        if (error) {
+          return callback(error);
+        }
+        callback(null, results);
       }
-      callback(null, results);
-    });
+    );
   },
   getAlbumByAlbumId: (id, user_id, callback) => {
     pool.query(
@@ -61,7 +65,11 @@ module.exports = {
           return callback(error);
         }
         if (results.affectedRows === 0) {
-          return callback(new Error("No such album found or user does not have permission to update it."));
+          return callback(
+            new Error(
+              "No such album found or user does not have permission to update it."
+            )
+          );
         }
         const updatedAlbums = {
           title: data.title,
@@ -72,50 +80,32 @@ module.exports = {
       }
     );
   },
-  /* addPhotoToAlbum: (albumId, photoId, userId, callback) => {
-    
+
+  addPhotoToAlbum: (albumId, photoId, userId, callback) => {
     pool.query(
-      //   `INSERT INTO photos(album_id, photo_data) VALUES(?,?)`,
-      `UPDATE photos SET album_id = ? WHERE id = ?`,
-      [albumId, photoId],
-      (error, results) => {
+      `SELECT * FROM albums WHERE id = ? AND user_id = ?`,
+      [albumId, userId],
+      (error, albumResults) => {
         if (error) {
-          console.log(error);
           return callback(error);
         }
-        callback(null, results);
+        if (!albumResults.length) {
+          return callback(
+            new Error("Album not found or not owned by the user")
+          );
+        }
+
+        pool.query(
+          `UPDATE photos SET album_id = ? WHERE id = ?`,
+          [albumId, photoId],
+          (error, results) => {
+            if (error) {
+              return callback(error);
+            }
+            callback(null, results);
+          }
+        );
       }
     );
-  }, */
-  addPhotoToAlbum: (albumId, photoId, userId, callback) => {
-    
-    // Check if the album exists and belongs to the logged-in user
-    pool.query(
-        `SELECT * FROM albums WHERE id = ? AND user_id = ?`,
-        [albumId, userId],
-        (error, albumResults) => {
-            if (error) {
-                console.log(error);
-                return callback(error);
-            }
-            if (!albumResults.length) {
-                return callback(new Error("Album not found or not owned by the user"));
-            }
-
-            // If the album exists and belongs to the user, update the photo
-            pool.query(
-                `UPDATE photos SET album_id = ? WHERE id = ?`,
-                [albumId, photoId],
-                (error, results) => {
-                    if (error) {
-                        console.log(error);
-                        return callback(error);
-                    }
-                    callback(null, results);
-                }
-            );
-        }
-    );
-},
-
+  },
 };

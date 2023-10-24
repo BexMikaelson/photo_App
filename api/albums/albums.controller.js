@@ -94,27 +94,17 @@ module.exports = {
     });
   },
 
-  addPhotoToAlbum: (req, res) => {
+   addPhotoToAlbum: (req, res) => {
     const userId = req.user.user_id;
     const albumId = req.params.albumId;
-    const photoData = req.body.photo_id;
+    const photoId = req.body.photo_id;
 
-    // Input validations
-    if (!userId || !albumId || !photoData) {
-      return res.status(400).json({
-          status: "error",
-          message: "Incomplete data provided.",
-      });
-    }
-    
-    addPhotoToAlbum(userId, albumId, photoData, (error, results) => {
-      console.log(photoData, albumId, userId)
+    addPhotoToAlbum(albumId, photoId, userId, (error, results) => {
       if (error) {
-        // Handle specific known errors
         if (error.message === "Album not found or not owned by the user") {
           return res.status(403).json({
-              status: "error",
-              message: "Unauthorized action or album not found.",
+            status: "error",
+            message: "Unauthorized action or album not found.",
           });
         }
         return res.status(500).json({
