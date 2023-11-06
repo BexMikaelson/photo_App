@@ -9,14 +9,7 @@
 			"name": "post/users/login",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiaWQiOjEsInVzZXJuYW1lIjoiaHMiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiaGVpZGkiLCJsYXN0bmFtZSI6InNqb2JlcmcifSwiaWF0IjoxNjk3NTUxNTY3LCJleHAiOjE2OTc1NTUxNjd9.WkRTuW8OXJXd5ey8jdIiX20g5uCdEcdLEBtwd5x1nH4",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -30,14 +23,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/login",
+					"raw": "http://localhost:3000/users/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"users",
 						"login"
 					]
@@ -57,20 +49,13 @@
 			"name": "post/ users/register",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NTY3MjE2LCJleHAiOjE2OTc1NzQ0MTZ9.MyZzc34Pe1sBGCND1SKPcnnt5mZQvtMWryI2RkVt900",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"dh\",\n    \"email\":\"log@gmail.com\",\n    \"password\":\"test456\",\n    \"firstname\" : \"daniel\",\n    \"lastname\" : \"leve\"\n}",
+					"raw": "{\n    \"email\":\"fix.removed.usernam@email.com\",\n    \"password\":\"fix\",\n    \"first_name\" : \"fixt\",\n    \"last_name\" : \"true\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -78,14 +63,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/register",
+					"raw": "http://localhost:3000/users/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"users",
 						"register"
 					]
@@ -104,7 +88,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzE2MjAyLCJleHAiOjE2OTc3MjM0MDJ9.gia5Vy7yH6SLYOk_oDfZITq2LJSK6kps7XbpnAKYr-I",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk5MzAzMjU5LCJleHAiOjE2OTkzMTA0NTl9.db1iffmPKRX2ylB8YHXLgQNfyj9U45xG1VoNAzwpq_s",
 							"type": "string"
 						}
 					]
@@ -113,7 +97,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"title\": \"dinosarier Album\",\n  \"description\" : \"jurassic world dinos\" \n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -121,14 +105,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users",
+					"raw": "http://localhost:3000/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"users"
 					]
 				}
@@ -146,7 +129,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzE2MjAyLCJleHAiOjE2OTc3MjM0MDJ9.gia5Vy7yH6SLYOk_oDfZITq2LJSK6kps7XbpnAKYr-I",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -163,16 +146,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/1",
+					"raw": "http://localhost:3000/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"users",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -186,7 +168,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzE2MjAyLCJleHAiOjE2OTc3MjM0MDJ9.gia5Vy7yH6SLYOk_oDfZITq2LJSK6kps7XbpnAKYr-I",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -194,16 +176,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/albums/1",
+					"raw": "http://localhost:3000/albums/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"albums",
-						"1"
+						"5"
 					]
 				}
 			},
@@ -217,7 +198,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzE3MzcwLCJleHAiOjE2OTc3MjQ1NzB9.1hT7VtbUynN2g9Z37-fyYlHSx_hs7FFbUDsL824Yw7E",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -234,14 +215,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/albums",
+					"raw": "http://localhost:3000/albums",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"albums"
 					]
 				}
@@ -256,7 +236,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzE3MzcwLCJleHAiOjE2OTc3MjQ1NzB9.1hT7VtbUynN2g9Z37-fyYlHSx_hs7FFbUDsL824Yw7E",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -265,7 +245,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Confetti'R'Us\"\n}",
+					"raw": "{\n    \"title\": \"Cats Cats\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -273,16 +253,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/albums/4",
+					"raw": "http://localhost:3000/albums/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"albums",
-						"4"
+						"6"
 					]
 				}
 			},
@@ -296,7 +275,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3NzIzMTc0LCJleHAiOjE2OTc3MzAzNzR9.G7ugN287hm9L5TaGNIket1J4T78qPVuQzBLlD5vhY_g",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -305,7 +284,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"title\": \"Confetti Photo #3\",\n  \"image_url\": \"https://images.unsplash.com/photo-1492684223066-81342ee5ff30\",\n  \"description\": \"Confetti\"\n}",
+					"raw": "{\n  \"title\": \"Cats\",\n  \"image_url\": \"https://images.unsplash.com/photo-1492684223066-81342ee5ff30\",\n  \"description\": \"Confetti\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -313,14 +292,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/photos",
+					"raw": "http://localhost:3000/photos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"photos"
 					]
 				}
@@ -338,7 +316,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3Nzk1MDY0LCJleHAiOjE2OTc4MDIyNjR9.0xyISR-Rx_b3o_7IvaPJJnbI81GPc12bAuPYtEkSH20",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -355,14 +333,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/photos",
+					"raw": "http://localhost:3000/photos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"photos"
 					]
 				}
@@ -380,7 +357,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3Nzk1MDY0LCJleHAiOjE2OTc4MDIyNjR9.0xyISR-Rx_b3o_7IvaPJJnbI81GPc12bAuPYtEkSH20",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -397,16 +374,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/photos/1",
+					"raw": "http://localhost:3000/photos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"photos",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -420,7 +396,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3Nzk1MDY0LCJleHAiOjE2OTc4MDIyNjR9.0xyISR-Rx_b3o_7IvaPJJnbI81GPc12bAuPYtEkSH20",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -429,7 +405,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"title\": \"When life gives you confetti, celebrate\",\n  \"description\": \"Yolo\"\n}",
+					"raw": "{\n  \"title\": \"Cats be ninja\",\n  \"description\": \"Yolo\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -437,16 +413,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/photos/2",
+					"raw": "http://localhost:3000/photos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"photos",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -460,7 +435,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk3ODAxNTc3LCJleHAiOjE2OTc4MDg3Nzd9.WW6Y1pV9WAg8GOz89jDuBrbZYbu5WhoT6jvTat7sjus",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -469,7 +444,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"photo_id\": 3\n}",
+					"raw": "{\n  \"photo_id\": 6\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -477,16 +452,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/albums/3/photos",
+					"raw": "http://localhost:3000/albums/6/photos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"albums",
-						"3",
+						"6",
 						"photos"
 					]
 				}
@@ -504,7 +478,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJlbWFpbCI6ImxvZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTc4MDQ5NDcsImV4cCI6MTY5NzgxMjE0N30.dOVFCLyzTnbY6w8EPaKc-3Raqpi6FXL9DnREnk8wYrU",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjk4MTM3NzQ2LCJleHAiOjE2OTgxNDQ5NDZ9.uLCwegKTakGvLuGSZnmdbmseDNlsVo0-vON3uX3VIYI",
 							"type": "string"
 						}
 					]
@@ -521,14 +495,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/albums",
+					"raw": "http://localhost:3000/albums",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"albums"
 					]
 				}
@@ -560,14 +533,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/login",
+					"raw": "http://localhost:3000/users/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"users",
 						"login"
 					]
